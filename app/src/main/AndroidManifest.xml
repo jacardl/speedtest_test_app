@@ -1,13 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.speedtest_test">
+    package="com.testookla"
+    android:versionCode="1"
+    android:versionName="1.0" >
 
+    <uses-sdk android:minSdkVersion="10" />
+
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:targetPackage="org.zwanoo.android.speedtest" android:label="TestAndroidCalculatorBlackBox"/>
+        <!--android:targetPackage="com.peanutswifi" android:label="TestAndroidCalculatorBlackBox"/>-->
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <uses-library android:name="android.test.runner" />
     </application>
 
 </manifest>
