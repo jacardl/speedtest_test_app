@@ -8,6 +8,8 @@ android {
         applicationId "com.testookla"
         minSdkVersion 21
         targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
     }
     signingConfigs {
         debug {
@@ -28,5 +30,6 @@ android {
 }
 
 dependencies {
-    compile 'com.jayway.android.robotium:robotium-solo:5.5.4'
+    compile 'com.jayway.android.robotium:robotium-solo:5.5.4',
+            'commons-io:commons-io:2.4'
 }
