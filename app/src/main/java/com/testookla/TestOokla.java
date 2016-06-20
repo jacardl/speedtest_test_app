@@ -1,8 +1,11 @@
 package com.testookla;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.DisplayMetrics;
+import android.widget.TextView;
+
 import com.robotium.solo.Solo;
 
 @SuppressWarnings("unchecked")
@@ -47,8 +50,24 @@ public class TestOokla extends ActivityInstrumentationTestCase2 {
 		dm = new DisplayMetrics();
 		solo.getCurrentActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
 		solo.clickOnScreen(dm.widthPixels/2, dm.heightPixels*3/ 10);
-		solo.sleep(2*1000);
+		solo.sleep(2 * 1000);
 		solo.takeScreenshot("ookla", 50);
+	}
+
+	public void test_ookla_speedtest_result() throws Exception{
+		solo.waitForText("Begin Test");
+		solo.clickOnText("Begin Test");
+		solo.sleep(30 * 1000);
+		//获取Activity
+		Activity act=solo.getCurrentActivity();
+		//通过String的id获取int的id,String id为downloadSpeed，通过crack apk获取
+		int downloadSpeedId=act.getResources().getIdentifier("downloadSpeed", "id", act.getPackageName());
+		TextView downloadSpeedView = (TextView)act.findViewById(downloadSpeedId);
+		String downloadSpeed = downloadSpeedView.getText().toString();
+		int uploadSpeedId=act.getResources().getIdentifier("uploadSpeed", "id", act.getPackageName());
+		TextView uploadSpeedView = (TextView)act.findViewById(uploadSpeedId);
+		String uploadSpeed = uploadSpeedView.getText().toString();
+		fail(String.format("downlink rate: %s, uplink rate: %s", downloadSpeed, uploadSpeed));
 	}
 
 	@Override
