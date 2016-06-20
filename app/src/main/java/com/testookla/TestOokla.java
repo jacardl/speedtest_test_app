@@ -2,12 +2,12 @@ package com.testookla;
 
 import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
-
+import android.util.DisplayMetrics;
 import com.robotium.solo.Solo;
 
 @SuppressWarnings("unchecked")
 public class TestOokla extends ActivityInstrumentationTestCase2 {
-
+//	String CACHE = Context.getExternalFilesDir().getPath();
 //	public static final String ROOT = Environment.getExternalStorageDirectory().getPath() + "/test/";
 	private static final String LAUNCHER_ACTIVITY_FULL_CLASSNAME =
         "com.ookla.speedtest.softfacade.MainActivity";
@@ -30,34 +30,25 @@ public class TestOokla extends ActivityInstrumentationTestCase2 {
 
 	@Override
 	protected void setUp() throws Exception {
-//		solo = new Solo(getInstrumentation(), getActivity());
-//		solve getActivity() suspend AUT bug by this url below
-//		http://stackoverflow.com/questions/20860832/why-does-getactivity-block-during-junit-test-when-custom-imageview-calls-start?answertab=oldest#tab-top
         solo = new Solo(getInstrumentation());
 		Intent intent = new Intent(getInstrumentation().getTargetContext(), launcherActivityClass);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		getInstrumentation().getTargetContext().startActivity(intent);
-
 	}
 
-	public void test_ookla_speedtest() throws Exception{
-
-//		String fileName = "routerTest";
-//		String content = "this is a test";
-//		File file = new File(ROOT + fileName);
-//		try {
-//			FileUtils.writeStringToFile(file, content);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		solo.sleep(5*1000);
-//		solo.clickOnText("Begin Test");
-//		solo.sleep(20*1000);
-//		solo.clickOnText("No thanks");
-//		solo.sleep(5*1000);
-		solo.takeScreenshot("12345");
-		// Verify that resultant of 10 x 20
-//		assertTrue("xxxxxxxxxxxxxxxxxxx", expect);
+	public void test_ookla_speedtest_shot() throws Exception{
+		solo.waitForText("Begin Test");
+		solo.clickOnText("Begin Test");
+		solo.sleep(30 * 1000);
+		solo.clickOnText("RESULTS");
+		solo.sleep(2*1000);
+//		初始化参数,获得手机的宽带和高度像素单位为px
+		DisplayMetrics dm;
+		dm = new DisplayMetrics();
+		solo.getCurrentActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+		solo.clickOnScreen(dm.widthPixels/2, dm.heightPixels*3/ 10);
+		solo.sleep(2*1000);
+		solo.takeScreenshot("ookla", 50);
 	}
 
 	@Override
