@@ -40,10 +40,10 @@ public class TestOokla extends ActivityInstrumentationTestCase2 {
 	}
 
 	public void test_ookla_speedtest_shot() throws Exception{
-		solo.waitForText("Begin Test");
+		solo.waitForText("Begin Test", 0, 10 * 1000);
 		solo.clickOnText("Begin Test");
 		solo.sleep(30 * 1000);
-
+		solo.waitForText("No thanks", 0, 30 * 1000);
 		//获取Activity
 		Activity act=solo.getCurrentActivity();
 		//通过String的id获取int的id,String id为downloadSpeed，通过crack apk获取
@@ -70,6 +70,7 @@ public class TestOokla extends ActivityInstrumentationTestCase2 {
 		solo.waitForText("Begin Test");
 		solo.clickOnText("Begin Test");
 		solo.sleep(30 * 1000);
+		solo.waitForText("No thanks", 0, 30 * 1000);
 		//获取Activity
 		Activity act=solo.getCurrentActivity();
 		//通过String的id获取int的id,String id为downloadSpeed，通过crack apk获取
