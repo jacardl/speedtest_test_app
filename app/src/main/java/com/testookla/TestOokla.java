@@ -67,7 +67,7 @@ public class TestOokla extends ActivityInstrumentationTestCase2 {
 	}
 
 	public void test_ookla_speedtest_result() throws Exception{
-		solo.waitForText("Begin Test");
+		solo.waitForText("Begin Test", 0, 10 * 1000);
 		solo.clickOnText("Begin Test");
 		solo.sleep(30 * 1000);
 		solo.waitForText("No thanks", 0, 30 * 1000);
